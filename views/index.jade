@@ -1,5 +1,22 @@
 extends layout
 
+block scripts
+  script(type="text/javascript",
+         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3SPnBsQAZuripox6VWYAjkIvX6uIcyRI&sensor=true")
+  script(type="text/javascript")
+    function initialize_map() {
+      var mapOptions = {
+        center: new google.maps.LatLng(37.427127, -122.169728),
+        zoom: 16,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapTypeControl: 0,
+      };
+      return new google.maps.Map(document.getElementById("map_canvas"),
+    mapOptions);
+    };
+    initialize_map ();
+
 block content
   h1= title
-  p Welcome to #{title}
+  div(id="map_canvas", style="margins:0px; height:100%; width:100%; 
+      position:absolute; top:0px; left:0px;")

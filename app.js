@@ -15,7 +15,6 @@ var express = require('express')
 var app = express();
 
 app.configure(function(){
-  app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.favicon());
@@ -41,7 +40,12 @@ app.configure(function(){
  * the shell.
  */
 app.configure('development', function(){
+  app.set('port', process.env.PORT || 80);
   app.use(express.errorHandler());
+});
+
+app.configure('production', function() {
+  app.set('port', process.env.PORT || 80);
 });
 
 app.get('/', routes.index);
