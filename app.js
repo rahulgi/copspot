@@ -40,7 +40,7 @@ app.configure(function(){
  * the shell.
  */
 app.configure('development', function(){
-  app.set('port', process.env.PORT || 80);
+  app.set('port', process.env.PORT || 3000);
   app.use(express.errorHandler());
 });
 
@@ -49,6 +49,7 @@ app.configure('production', function() {
 });
 
 app.get('/', routes.index);
+
 var prefixes = ['spots'];
 
 // map route to controller
