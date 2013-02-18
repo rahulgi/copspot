@@ -19,13 +19,13 @@ exports.create = function (req, res) {
   res.send ("spot with id: " + indx + " created.");
 };
 
-/* Spots last for one hour, and we clean up old ones ever 60 seconds. */
+/* Spots last for one hour, and we clean up old ones every 60 seconds. */
 var sleepInterval = 1000*60;
 var spotDuration = 1000*60*60;
 
 var cleanSpots = function () {
   for (var i = 0; i < spots.length; i ++) {
-    if ((new Date()).getTime () - spots[i].time > 1000*10)
+    if ((new Date()).getTime () - spots[i].time > spotDuration)
       spots.splice (i, 1);
   }
   setTimeout (cleanSpots, sleepInterval);
